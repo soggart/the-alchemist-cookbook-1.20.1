@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:campfire_cooking",
+  "category": "misc",
+  "cookingtime": 60,
+  "experience": 0,
+  "ingredient": {
+    "item": "minecraft:stick"
+  },
+  "result": "minecraft:torch"
+}

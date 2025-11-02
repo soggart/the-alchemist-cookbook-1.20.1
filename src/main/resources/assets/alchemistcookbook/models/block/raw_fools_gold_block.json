@@ -1,0 +1,6 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "all": "alchemistcookbook:block/raw_fools_gold_block"
+  }
+}

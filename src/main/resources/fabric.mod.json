@@ -1,0 +1,40 @@
+{
+	"schemaVersion": 1,
+	"id": "alchemistcookbook",
+	"version": "${version}",
+	"name": "The Alchemist CookBook",
+	"description": "This is an example description! Tell everyone what your mod is about!",
+	"authors": [
+		"soggart and confusedtts"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "MIT",
+	"icon": "assets/alchemistcookbook/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"net.soggart.potionmod.TheAlchemistCookBook"
+		],
+        "client": [
+         "net.soggart.potionmod.TheAlchemistCookBookClient"
+        ],
+		"fabric-datagen": [
+			"net.soggart.potionmod.TheAlchemistCookBookDataGenerator"
+		]
+	},
+	"mixins": [
+		"alchemistcookbook.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.17.2",
+		"minecraft": "~1.20.1",
+		"java": ">=17",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}

@@ -1,0 +1,21 @@
+{
+  "item.alchemistcookbook.slime_rubber": "Slime Rubber",
+  "item.alchemistcookbook.silver_ingot": "Silver Ingot",
+  "item.alchemistcookbook.fools_gold": "Gold Ingot",
+  "item.alchemistcookbook.raw_fools_gold": "Raw Fool's Gold",
+
+  "block.alchemistcookbook.silver_block": "Block of Silver",
+  "block.alchemistcookbook.raw_fools_gold_block": "Block of Pyrite",
+
+  "itemgroup.potionmod": "The Alchemist CookBook",
+
+  "item.minecraft.potion.effect.glow": "Potion of Glowing",
+  "item.minecraft.potion.effect.glow_long": "Potion of Glowing",
+  "item.minecraft.potion.effect.corrosion": "Potion of Corrosion",
+  "item.minecraft.potion.effect.corrosion_long": "Potion of Corrosion",
+  "item.minecraft.potion.effect.corrosion_strong": "Potion of Corrosion",
+
+  "effect.alchemistcookbook.corrosion": "Corrosion",
+  "effect.alchemistcookbook.plague": "Plague",
+  "effect.alchemistcookbook.decay": "Health Decay"
+}
