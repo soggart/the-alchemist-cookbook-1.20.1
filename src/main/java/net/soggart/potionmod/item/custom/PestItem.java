@@ -7,6 +7,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.screen.slot.Slot;
 import net.minecraft.util.ClickType;
 
+
 public class PestItem extends Item {
     public PestItem(Settings settings) {
         super(settings);
@@ -18,3 +19,4 @@ public class PestItem extends Item {
         return super.onClicked(stack, otherStack, slot, clickType, player, cursorStackReference);
     }
 }
+
