@@ -23,6 +23,7 @@ public class ModItemGroups {
                 entries.add(ModItems.SILVER);
                 entries.add(ModItems.FOOLSGOLD);
                 entries.add(ModItems.PYRITE);
+                entries.add(ModItems.LIGHTNINGSTAFF);
 
                 entries.add(ModBlocks.SILVER_BLOCK);
 
