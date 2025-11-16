@@ -3,6 +3,7 @@ package net.soggart.potionmod.item.custom;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LightningEntity;
+import net.minecraft.entity.TntEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -12,8 +13,8 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.soggart.potionmod.utils.RaycastUtil;
 
-public class LightningStaffItem extends Item {
-    public LightningStaffItem(Settings settings) {
+public class BombStaffItem extends Item {
+    public BombStaffItem(Settings settings) {
         super(settings);
     }
     @Override
@@ -31,9 +32,10 @@ public class LightningStaffItem extends Item {
 
         // Spawn the lightning bolt.
         if(target != null){
-            LightningEntity lightningBolt = new LightningEntity(EntityType.LIGHTNING_BOLT, world);
-            lightningBolt.setPosition(target);
-            world.spawnEntity(lightningBolt);
+            TntEntity bomba = new TntEntity(EntityType.TNT, world);
+            bomba.setPosition(target);
+            bomba.setFuse(0);
+            world.spawnEntity(bomba);
         }
 
 
