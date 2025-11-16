@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "alchemistcookbook:fools_gold_block"
+    }
+  ],
+  "result": {
+    "item": "alchemistcookbook:fools_gold",
+    "count": 9
+  }
+}

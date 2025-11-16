@@ -19,13 +19,18 @@ public class ModItemGroups {
             FabricItemGroup.builder().displayName(Text.translatable("itemgroup.potionmod"))
             .icon(() -> new ItemStack(ModItems.SLIMERUBBER)).entries((displayContext, entries) -> {
 
-                entries.add(ModItems.SLIMERUBBER);
+                entries.add(ModBlocks.SILVERORE_BLOCK);
+                entries.add(ModItems.RAWSILVER);
+                entries.add(ModBlocks.RAWSILVER_BLOCK);
                 entries.add(ModItems.SILVER);
-                entries.add(ModItems.FOOLSGOLD);
-                entries.add(ModItems.PYRITE);
-                entries.add(ModItems.LIGHTNINGSTAFF);
-
                 entries.add(ModBlocks.SILVER_BLOCK);
+                entries.add(ModBlocks.PYRITEORE_BLOCK);
+                entries.add(ModItems.PYRITE);
+                entries.add(ModBlocks.PYRITE_BLOCK);
+                entries.add(ModItems.FOOLSGOLD);
+                entries.add(ModBlocks.FOOLSGOLD_BLOCK);
+                entries.add(ModItems.SLIMERUBBER);
+
 
                     }).build());
 

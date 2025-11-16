@@ -1,7 +1,11 @@
 {
   "replace": false,
   "values": [
+    "alchemistcookbook:silver_ore",
+	"alchemistcookbook:raw_silver_block",
+    "alchemistcookbook:silver_block",
+	"alchemistcookbook:pyrite_ore",
     "alchemistcookbook:raw_fools_gold_block",
-    "alchemistcookbook:silver_block"
+	"alchemistcookbook:fools_gold_block"
   ]
 }

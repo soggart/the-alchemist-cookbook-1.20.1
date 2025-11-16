@@ -1,0 +1,7 @@
+{
+  "variants":{
+    "": {
+      "model": "alchemistcookbook:block/pyrite_ore"
+    }
+  }
+}

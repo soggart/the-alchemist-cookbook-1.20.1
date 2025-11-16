@@ -9,21 +9,20 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 import net.soggart.potionmod.TheAlchemistCookBook;
-import net.soggart.potionmod.item.custom.LightningStaffItem;
 
 public class ModItems {
-
-    public static final Item SLIMERUBBER = registerItem("slime_rubber", new Item(new FabricItemSettings()));
-    public static final Item SILVER = registerItem("silver_ingot", new Item(new FabricItemSettings()));
-    public static final Item FOOLSGOLD = registerItem("fools_gold", new Item(new FabricItemSettings()));
+	public static final Item RAWSILVER = registerItem("raw_silver", new Item(new FabricItemSettings()));	
+	public static final Item SILVER = registerItem("silver_ingot", new Item(new FabricItemSettings()));
     public static final Item PYRITE = registerItem("raw_fools_gold", new Item(new FabricItemSettings()));
-    public static final Item LIGHTNINGSTAFF = registerItem("lightning_staff", new LightningStaffItem(new FabricItemSettings()));
-
+    public static final Item FOOLSGOLD = registerItem("fools_gold", new Item(new FabricItemSettings()));
+    public static final Item SLIMERUBBER = registerItem("slime_rubber", new Item(new FabricItemSettings()));
+    
     private static void addItemstoIngredientItemGroup(FabricItemGroupEntries entries){
         entries.add(SLIMERUBBER);
         entries.add(SILVER);
         entries.add(FOOLSGOLD);
         entries.add(PYRITE);
+        entries.add(RAWSILVER);
     }
 
     private static Item registerItem(String name, Item item){

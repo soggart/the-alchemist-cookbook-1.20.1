@@ -11,11 +11,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "alchemistcookbook:raw_fools_gold_block"
+          "name": "alchemistcookbook:raw_silver_block"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "alchemistcookbook:blocks/raw_fools_gold_block"
+  "random_sequence": "alchemistcookbook:blocks/raw_silver_block"
 }

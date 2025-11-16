@@ -1,6 +1,8 @@
 {
   "replace": false,
   "values": [
-
+    "alchemistcookbook:silver_ore",
+  	"alchemistcookbook:raw_silver_block",
+  	"alchemistcookbook:silver_block"
   ]
 }
