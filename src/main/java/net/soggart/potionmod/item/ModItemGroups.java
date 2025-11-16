@@ -30,6 +30,7 @@ public class ModItemGroups {
                 entries.add(ModItems.SLIMERUBBER);
                 entries.add(ModItems.LIGHTNINGSTAFF);
                 entries.add(ModItems.BOMBSTAFF);
+                entries.add(ModItems.FIREBALLGAUNTLET);
 
 
                     }).build());

@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "alchemistcookbook:raw_silver_block"
+    }
+  ],
+  "result": {
+    "item": "alchemistcookbook:raw_silver",
+    "count": 9
+  }
+}

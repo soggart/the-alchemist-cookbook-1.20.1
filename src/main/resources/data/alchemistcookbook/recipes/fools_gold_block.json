@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "alchemistcookbook:fools_gold"
+    }
+  },
+  "result": {
+    "item": "alchemistcookbook:fools_gold_block"
+  }
+}

@@ -2,7 +2,6 @@ package net.soggart.potionmod.item.custom;
 
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LightningEntity;
 import net.minecraft.entity.TntEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;

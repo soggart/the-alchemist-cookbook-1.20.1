@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:blasting",
+  "category": "misc",
+  "cookingtime": 100,
+  "experience": 0.7,
+  "group": "fools_gold",
+  "ingredient": {
+    "item": "alchemistcookbook:raw_fools_gold"
+  },
+  "result": "alchemistcookbook:fools_gold"
+}

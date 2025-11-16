@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "alchemistcookbook:silver_ingot"
+    }
+  },
+  "result": {
+    "item": "alchemistcookbook:silver_block"
+  }
+}
