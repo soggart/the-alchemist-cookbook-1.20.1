@@ -9,6 +9,7 @@ import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
+import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.intprovider.UniformIntProvider;
 import net.soggart.potionmod.TheAlchemistCookBook;
@@ -28,10 +29,10 @@ public class ModBlocks { //quando for fazer um bloco novo lembre-se de preencher
             new ExperienceDroppingBlock(FabricBlockSettings.copyOf(Blocks.STONE).strength(3.0F, 6.0F), UniformIntProvider.create(2, 5)));
 
     public static final Block PYRITE_BLOCK = registerBlock("raw_fools_gold_block",
-            new Block(FabricBlockSettings.copyOf(Blocks.IRON_BLOCK).strength(3.0F, 6.0F)));
+            new Block(FabricBlockSettings.copyOf(Blocks.IRON_BLOCK).strength(3.0F, 6.0F).sounds(BlockSoundGroup.GILDED_BLACKSTONE)));
 
     public static final Block FOOLSGOLD_BLOCK = registerBlock("fools_gold_block",
-            new Block(FabricBlockSettings.copyOf(Blocks.IRON_BLOCK).strength(3.0F, 6.0F)));
+            new Block(FabricBlockSettings.copyOf(Blocks.IRON_BLOCK).strength(3.0F, 6.0F).sounds(BlockSoundGroup.GILDED_BLACKSTONE)));
 
     private static Block registerBlock(String name, Block block){
         registerBlockItem(name, block);

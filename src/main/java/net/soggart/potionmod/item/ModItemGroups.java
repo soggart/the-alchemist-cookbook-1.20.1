@@ -1,7 +1,6 @@
 package net.soggart.potionmod.item;
 
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
-import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.registry.Registries;
@@ -10,7 +9,6 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.soggart.potionmod.TheAlchemistCookBook;
 import net.soggart.potionmod.block.ModBlocks;
-import net.soggart.potionmod.potion.ModPotions;
 
 public class ModItemGroups {
 
@@ -30,6 +28,8 @@ public class ModItemGroups {
                 entries.add(ModItems.FOOLSGOLD);
                 entries.add(ModBlocks.FOOLSGOLD_BLOCK);
                 entries.add(ModItems.SLIMERUBBER);
+                entries.add(ModItems.LIGHTNINGSTAFF);
+                entries.add(ModItems.BOMBSTAFF);
 
 
                     }).build());
