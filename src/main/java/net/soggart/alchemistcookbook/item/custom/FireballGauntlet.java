@@ -15,6 +15,10 @@ import net.minecraft.stat.Stats;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
+import java.util.function.Predicate;
+
+import static net.minecraft.item.Items.FIRE_CHARGE;
+
 public class FireballGauntlet extends BowItem {
     public FireballGauntlet(Settings settings) {
         super(settings);
@@ -26,13 +30,13 @@ public class FireballGauntlet extends BowItem {
             ItemStack itemStack = playerEntity.getProjectileType(stack);
             if (!itemStack.isEmpty() || bl) {
                 if (itemStack.isEmpty()) {
-                    itemStack = new ItemStack(Items.FIRE_CHARGE);
+                    itemStack = new ItemStack(FIRE_CHARGE);
                 }
 
                 int i = this.getMaxUseTime(stack) - remainingUseTicks;
                 float f = getPullProgress(i);
                 if (!(f < 0.001)) {
-                    boolean bl2 = bl && itemStack.isOf(Items.FIRE_CHARGE);
+                    boolean bl2 = bl && itemStack.isOf(FIRE_CHARGE);
                     if (!world.isClient) {
 
                         Vec3d look = user.getRotationVec(1.0F); // Vetor de direção baseado no olhar do jogador
