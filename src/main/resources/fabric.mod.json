@@ -16,13 +16,13 @@
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-			"net.soggart.potionmod.TheAlchemistCookBook"
+			"net.soggart.alchemistcookbook.TheAlchemistCookBook"
 		],
         "client": [
-         "net.soggart.potionmod.TheAlchemistCookBookClient"
+         "net.soggart.alchemistcookbook.TheAlchemistCookBookClient"
         ],
 		"fabric-datagen": [
-			"net.soggart.potionmod.TheAlchemistCookBookDataGenerator"
+			"net.soggart.alchemistcookbook.TheAlchemistCookBookDataGenerator"
 		]
 	},
 	"mixins": [

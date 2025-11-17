@@ -4,16 +4,16 @@
   "item.alchemistcookbook.fools_gold": "Gold Ingot",
   "item.alchemistcookbook.raw_fools_gold": "Raw Fool's Gold",
   "item.alchemistcookbook.raw_silver": "Raw Silver",
-  "item.alchemistcookbook.raw_fools_gold": "Raw Fool's Gold",
-  "item.alchemistcookbook.raw_silver": "Raw Silver",
+  "item.alchemistcookbook.lightning_staff": "Lightning Staff",
+  "item.alchemistcookbook.bomb_staff": "Bomb Staff",
+  "item.alchemistcookbook.fireball_gauntlet": "Fireball Gauntlet",
 
   "block.alchemistcookbook.silver_ore": "Silver Ore",
   "block.alchemistcookbook.raw_silver_block": "Block of Raw Silver",
   "block.alchemistcookbook.silver_block": "Block of Silver",
-  "block.alchemistcookbook.lightning_staff": "Lightning Staff",
-  "block.alchemistcookbook.bomb_staff": "Bomb Staff",
-  "block.alchemistcookbook.fireball_gauntlet": "Fireball Gauntlet",
-
+  "block.alchemistcookbook.pyrite_ore": "Pyrite Ore",
+  "block.alchemistcookbook.raw_fools_gold_block": "Block of Raw Pyrite",
+  "block.alchemistcookbook.fools_gold_block": "Block of Pyrite",
   "itemgroup.potionmod": "The Alchemist CookBook",
 
   "item.minecraft.potion.effect.glow": "Potion of Glowing",
