@@ -13,7 +13,7 @@ import net.soggart.alchemistcookbook.potion.ModPotions;
 import net.soggart.alchemistcookbook.statuseffect.effects.Corrosion;
 import net.soggart.alchemistcookbook.statuseffect.effects.Decay;
 import net.soggart.alchemistcookbook.statuseffect.effects.Plague;
-//import net.soggart.alchemistcookbook.world.gen.ModWorldGeneration;
+import net.soggart.alchemistcookbook.world.gen.ModWorldGeneration;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -43,7 +43,8 @@ public class TheAlchemistCookBook implements ModInitializer {
         ModBlocks.registerModBlocks();
         ModPotions.registerModPotions();
 
-//        ModWorldGeneration.generateModWorldGen();
+
+        ModWorldGeneration.generateModWorldGen();
         
         LOGGER.info("Hello Fabric world!");
 	}
