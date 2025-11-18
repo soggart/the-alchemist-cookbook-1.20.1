@@ -38,7 +38,7 @@ public class FireballGauntlet extends BowItem {
                         Vec3d look = user.getRotationVec(1.0F); // Vetor de direção baseado no olhar do jogador
 
                         if(f >= 1.0f){
-                            FireballEntity fireball = new FireballEntity(world, user, look.x, look.y, look.z, 99);
+                            FireballEntity fireball = new FireballEntity(world, user, look.x, look.y, look.z, 2);
 
                             // Define o "power" da fireball (quanto mais alto, maior a explosão)
                             fireball.powerX = look.x;
