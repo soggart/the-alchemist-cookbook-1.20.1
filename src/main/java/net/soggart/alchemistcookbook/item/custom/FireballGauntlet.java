@@ -6,6 +6,7 @@ import net.minecraft.entity.projectile.FireballEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.SmallFireballEntity;
 import net.minecraft.item.*;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.stat.Stats;
@@ -37,11 +38,7 @@ public class FireballGauntlet extends BowItem {
                         Vec3d look = user.getRotationVec(1.0F); // Vetor de direção baseado no olhar do jogador
 
                         if(f >= 1.0f){
-                            FireballEntity fireball = new FireballEntity(EntityType.FIREBALL, world);
-
-                            //fireball.explosionPower = 2; //IMPORTANTE
-
-                            fireball.setOwner(user); // Define o dono (importante para não causar dano ao próprio jogador)
+                            FireballEntity fireball = new FireballEntity(world, user, look.x, look.y, look.z, 99);
 
                             // Define o "power" da fireball (quanto mais alto, maior a explosão)
                             fireball.powerX = look.x;
