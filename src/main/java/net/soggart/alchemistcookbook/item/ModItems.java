@@ -10,6 +10,7 @@ import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 import net.soggart.alchemistcookbook.TheAlchemistCookBook;
 import net.soggart.alchemistcookbook.item.custom.BombStaffItem;
+import net.soggart.alchemistcookbook.item.custom.EnderStaffItem;
 import net.soggart.alchemistcookbook.item.custom.FireballGauntlet;
 import net.soggart.alchemistcookbook.item.custom.LightningStaffItem;
 
@@ -21,6 +22,7 @@ public class ModItems {
     public static final Item SLIMERUBBER = registerItem("slime_rubber", new Item(new FabricItemSettings()));
     public static final Item LIGHTNINGSTAFF = registerItem("lightning_staff", new LightningStaffItem(new FabricItemSettings()));
     public static final Item BOMBSTAFF = registerItem("bomb_staff", new BombStaffItem(new FabricItemSettings()));
+    public static final Item ENDERSTAFF = registerItem("ender_staff", new EnderStaffItem(new FabricItemSettings()));
     public static final Item FIREBALLGAUNTLET = registerItem("fireball_gauntlet", new FireballGauntlet(new FabricItemSettings()));
 
     private static void addItemstoIngredientItemGroup(FabricItemGroupEntries entries){

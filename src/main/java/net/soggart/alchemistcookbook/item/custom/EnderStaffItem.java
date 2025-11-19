@@ -1,8 +1,6 @@
 package net.soggart.alchemistcookbook.item.custom;
 
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LightningEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -13,8 +11,8 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.soggart.alchemistcookbook.utils.RaycastUtil;
 
-public class LightningStaffItem extends Item {
-    public LightningStaffItem(Settings settings) {
+public class EnderStaffItem extends Item {
+    public EnderStaffItem(Settings settings) {
         super(settings);
     }
     @Override
@@ -24,7 +22,7 @@ public class LightningStaffItem extends Item {
         if (world.isClient) {
             return TypedActionResult.pass(user.getStackInHand(hand));
         }
-        world.addParticle(ParticleTypes.ELECTRIC_SPARK, user.getX(), user.getY(), user.getZ(), 0.0, 0.0, 0.0);
+        world.addParticle(ParticleTypes.PORTAL, user.getX(), user.getY(), user.getZ(), 0.0, 0.0, 0.0);
 
         MinecraftClient client = MinecraftClient.getInstance();
         float fov = MinecraftClient.getInstance().player.getFovMultiplier();
@@ -33,9 +31,7 @@ public class LightningStaffItem extends Item {
 
         // Spawn the lightning bolt.
         if(target != null){
-            LightningEntity lightningBolt = new LightningEntity(EntityType.LIGHTNING_BOLT, world);
-            lightningBolt.setPosition(target);
-            world.spawnEntity(lightningBolt);
+            user.setPos(target.x, target.y, target.z);
         }
 
 
