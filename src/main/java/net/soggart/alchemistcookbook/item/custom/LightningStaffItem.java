@@ -26,7 +26,7 @@ public class LightningStaffItem extends Item {
 
         MinecraftClient client = MinecraftClient.getInstance();
         float fov = MinecraftClient.getInstance().player.getFovMultiplier();
-        Vec3d target = RaycastUtil.raycastFromCustomCamera(((int) (client.mouse.getX() / client.getWindow().getScaleFactor())),(int)((client.mouse.getY() / client.getWindow().getScaleFactor())),user.getClientCameraPosVec(1), user.getPitch(), user.getHeadYaw(), fov).getPos();
+        Vec3d target = RaycastUtil.raycastFromCustomCamera(((int) (client.mouse.getX() / client.getWindow().getScaleFactor())),(int)((client.mouse.getY() / client.getWindow().getScaleFactor())),user.getClientCameraPosVec(1), user.getPitch(), user.getHeadYaw(), fov, 160.0).getPos();
         //user.getBlockPos().offset(user.getHorizontalFacing(), 10);
 
         // Spawn the lightning bolt.

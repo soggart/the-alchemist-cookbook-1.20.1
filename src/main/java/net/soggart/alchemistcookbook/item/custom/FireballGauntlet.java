@@ -51,7 +51,7 @@ public class FireballGauntlet extends BowItem {
                                     user.getZ() + look.z * 2.0
                             );
 
-                            fireball.setVelocity(look.x, look.y, look.z, 1.0f, 0.0f);
+                            fireball.setVelocity(look.x, look.y, look.z, 0.8f, 0.0f);
                             world.spawnEntity(fireball);
                         }else{
                             SmallFireballEntity fireball = new SmallFireballEntity(EntityType.SMALL_FIREBALL, world);
@@ -68,7 +68,7 @@ public class FireballGauntlet extends BowItem {
                                     user.getZ() + look.z * 2.0
                             );
 
-                            fireball.setVelocity(look.x, look.y, look.z, 1.0f, (1-(f*100)));
+                            fireball.setVelocity(look.x, look.y, look.z, 0.8f, (1-(f*100)));
                             world.spawnEntity(fireball);
                         }
                     }

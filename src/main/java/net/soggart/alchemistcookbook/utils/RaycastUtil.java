@@ -12,7 +12,7 @@ public class RaycastUtil {
     // Don't worry about screenX and screenY. No scary names.
     // screenX is usually (int) (client.mouse.getX() / client.getWindow().getScaleFactor());
     // screenY is usually (int) (client.mouse.getY() / client.getWindow().getScaleFactor());
-    public static HitResult raycastFromCustomCamera(int screenX, int screenY, Vec3d cameraPos, float pitch, float yaw, double fov) {
+    public static HitResult raycastFromCustomCamera(int screenX, int screenY, Vec3d cameraPos, float pitch, float yaw, double fov, double reach) {
         MinecraftClient client = MinecraftClient.getInstance();
         if (client.world == null) return null;
 
@@ -53,8 +53,6 @@ public class RaycastUtil {
         ).normalize();
 
         Vec3d direction = new Vec3d(rayDir.x, rayDir.y, rayDir.z);
-
-        double reach = 160.0; // Change this however you want. The longer, the more lag it's likely going to cause.
         Vec3d end = cameraPos.add(direction.multiply(reach));
 
         return client.world.raycast(new RaycastContext(
