@@ -3,9 +3,9 @@
   "category": "misc",
   "cookingtime": 100,
   "experience": 0.7,
-  "group": "silver_ingot",
+  "group": "fools_gold",
   "ingredient": {
-    "item": "alchemistcookbook:raw_silver"
+    "item": "alchemistcookbook:deepslate_pyrite_ore"
   },
-  "result": "alchemistcookbook:silver_ingot"
+  "result": "alchemistcookbook:fools_gold"
 }

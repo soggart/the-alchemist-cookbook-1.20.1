@@ -10,7 +10,7 @@ public class ModOreGeneration {
 		BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(), 
 				GenerationStep.Feature.UNDERGROUND_ORES, ModPlacedFeatures.SILVERORE_PLACED_KEY);
 
-/*		BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(), 
+		BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(), 
 				GenerationStep.Feature.UNDERGROUND_ORES, ModPlacedFeatures.PYRITEORE_PLACED_KEY);
-*/	}
+	}
 }

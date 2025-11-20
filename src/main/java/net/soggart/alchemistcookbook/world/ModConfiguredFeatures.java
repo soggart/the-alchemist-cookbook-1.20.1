@@ -19,19 +19,22 @@ import net.minecraft.world.gen.feature.OreFeatureConfig;
 
 public class ModConfiguredFeatures {
 	public static final RegistryKey<ConfiguredFeature<?, ?>> SILVERORE_KEY = registerKey("silver_ore");
-//	public static final RegistryKey<ConfiguredFeature<?, ?>> PYRITEORE_KEY = registerKey("pyrite_ore");
+	public static final RegistryKey<ConfiguredFeature<?, ?>> PYRITEORE_KEY = registerKey("pyrite_ore");
 
 	public static void boostrap(Registerable<ConfiguredFeature<?, ?>> context) {
 		RuleTest stoneReplacables = new TagMatchRuleTest(BlockTags.STONE_ORE_REPLACEABLES);
+		RuleTest deepslateReplacables = new TagMatchRuleTest(BlockTags.DEEPSLATE_ORE_REPLACEABLES);
 		
 		List<OreFeatureConfig.Target> overworldSilverOre = 
-				List.of(OreFeatureConfig.createTarget(stoneReplacables, ModBlocks.SILVERORE_BLOCK.getDefaultState()));
+				List.of(OreFeatureConfig.createTarget(stoneReplacables, ModBlocks.SILVERORE_BLOCK.getDefaultState()),
+						OreFeatureConfig.createTarget(deepslateReplacables, ModBlocks.DEEPSLATESILVERORE_BLOCK.getDefaultState()));
 
-/*		List<OreFeatureConfig.Target> overworldPyriteOre = 
-				List.of(OreFeatureConfig.createTarget(stoneReplacables, ModBlocks.PYRITEORE_BLOCK.getDefaultState()));
-*/
+		List<OreFeatureConfig.Target> overworldPyriteOre = 
+				List.of(OreFeatureConfig.createTarget(stoneReplacables, ModBlocks.PYRITEORE_BLOCK.getDefaultState()),
+						OreFeatureConfig.createTarget(deepslateReplacables, ModBlocks.DEEPSLATEPYRITEORE_BLOCK.getDefaultState()));
+
 		register(context, SILVERORE_KEY, Feature.ORE, new OreFeatureConfig(overworldSilverOre, 12));
-//		register(context, PYRITEORE_KEY, Feature.ORE, new OreFeatureConfig(overworldPyriteOre, 12));
+		register(context, PYRITEORE_KEY, Feature.ORE, new OreFeatureConfig(overworldPyriteOre, 12));
 	}
 	
 	public static RegistryKey<ConfiguredFeature<?, ?>> registerKey(String name) {

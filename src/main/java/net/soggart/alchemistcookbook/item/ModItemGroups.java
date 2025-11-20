@@ -18,11 +18,13 @@ public class ModItemGroups {
             .icon(() -> new ItemStack(ModItems.SLIMERUBBER)).entries((displayContext, entries) -> {
 
                 entries.add(ModBlocks.SILVERORE_BLOCK);
+                entries.add(ModBlocks.DEEPSLATESILVERORE_BLOCK);
                 entries.add(ModItems.RAWSILVER);
                 entries.add(ModBlocks.RAWSILVER_BLOCK);
                 entries.add(ModItems.SILVER);
                 entries.add(ModBlocks.SILVER_BLOCK);
                 entries.add(ModBlocks.PYRITEORE_BLOCK);
+                entries.add(ModBlocks.DEEPSLATEPYRITEORE_BLOCK);
                 entries.add(ModItems.PYRITE);
                 entries.add(ModBlocks.PYRITE_BLOCK);
                 entries.add(ModItems.FOOLSGOLD);

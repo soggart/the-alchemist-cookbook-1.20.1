@@ -19,6 +19,9 @@ public class ModBlocks { //quando for fazer um bloco novo lembre-se de preencher
     public static final Block SILVERORE_BLOCK = registerBlock("silver_ore",
             new ExperienceDroppingBlock(FabricBlockSettings.copyOf(Blocks.STONE).strength(3.0F, 6.0F), UniformIntProvider.create(2, 5)));
 
+    public static final Block DEEPSLATESILVERORE_BLOCK = registerBlock("deepslate_silver_ore",
+            new ExperienceDroppingBlock(FabricBlockSettings.copyOf(Blocks.STONE).strength(3.0F, 6.0F), UniformIntProvider.create(2, 5)));
+    
     public static final Block RAWSILVER_BLOCK = registerBlock("raw_silver_block",
             new Block(FabricBlockSettings.copyOf(Blocks.IRON_BLOCK).strength(3.0F, 6.0F)));
 
@@ -26,6 +29,9 @@ public class ModBlocks { //quando for fazer um bloco novo lembre-se de preencher
             new Block(FabricBlockSettings.copyOf(Blocks.IRON_BLOCK).strength(3.0F, 6.0F)));
 
     public static final Block PYRITEORE_BLOCK = registerBlock("pyrite_ore",
+            new ExperienceDroppingBlock(FabricBlockSettings.copyOf(Blocks.STONE).strength(3.0F, 6.0F), UniformIntProvider.create(2, 5)));
+
+    public static final Block DEEPSLATEPYRITEORE_BLOCK = registerBlock("deepslate_pyrite_ore",
             new ExperienceDroppingBlock(FabricBlockSettings.copyOf(Blocks.STONE).strength(3.0F, 6.0F), UniformIntProvider.create(2, 5)));
 
     public static final Block PYRITE_BLOCK = registerBlock("raw_fools_gold_block",

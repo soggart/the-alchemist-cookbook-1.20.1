@@ -16,7 +16,7 @@ import java.util.List;
 
 public class ModPlacedFeatures {
 	public static final RegistryKey<PlacedFeature> SILVERORE_PLACED_KEY = registerKey("silver_ore_placed");
-//	public static final RegistryKey<PlacedFeature> PYRITEORE_PLACED_KEY = registerKey("pyrite_ore_placed");
+	public static final RegistryKey<PlacedFeature> PYRITEORE_PLACED_KEY = registerKey("pyrite_ore_placed");
 	
 
 	public static void boostrap(Registerable<PlacedFeature> context) {
@@ -25,10 +25,11 @@ public class ModPlacedFeatures {
 		register(context, SILVERORE_PLACED_KEY, configuredFeatureRegistryEntryLookup.getOrThrow(ModConfiguredFeatures.SILVERORE_KEY),
 				ModOrePlacement.modifiersWithCount(12,
 						HeightRangePlacementModifier.uniform(YOffset.fixed(-80), YOffset.fixed(80))));
-/*		register(context, PYRITEORE_PLACED_KEY, configuredFeatureRegistryEntryLookUp.getOrThrow(ModConfiguredFeatures.PYRITEORE_KEY),
+
+		register(context, PYRITEORE_PLACED_KEY, configuredFeatureRegistryEntryLookup.getOrThrow(ModConfiguredFeatures.PYRITEORE_KEY),
 				ModOrePlacement.modifiersWithCount(12,
 						HeightRangePlacementModifier.uniform(YOffset.fixed(-80), YOffset.fixed(80))));
-*/	}
+	}
 	
 	public static RegistryKey<PlacedFeature> registerKey(String name) {
 		return RegistryKey.of(RegistryKeys.PLACED_FEATURE, new Identifier(TheAlchemistCookBook.MOD_ID, name));

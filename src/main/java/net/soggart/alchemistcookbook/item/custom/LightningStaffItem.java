@@ -6,7 +6,6 @@ import net.minecraft.entity.LightningEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.particle.ParticleTypes;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.math.Vec3d;
@@ -24,7 +23,6 @@ public class LightningStaffItem extends Item {
         if (world.isClient) {
             return TypedActionResult.pass(user.getStackInHand(hand));
         }
-        world.addParticle(ParticleTypes.ELECTRIC_SPARK, user.getX(), user.getY(), user.getZ(), 0.0, 0.0, 0.0);
 
         MinecraftClient client = MinecraftClient.getInstance();
         float fov = MinecraftClient.getInstance().player.getFovMultiplier();

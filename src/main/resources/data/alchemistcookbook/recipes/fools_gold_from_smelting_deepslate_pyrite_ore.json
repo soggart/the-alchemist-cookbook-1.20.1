@@ -5,7 +5,7 @@
   "experience": 0.1,
   "group": "fools_gold",
   "ingredient": {
-    "item": "alchemistcookbook:deepslate_pyrite_ore"
+    "item": "alchemistcookbook:pyrite_ore"
   },
   "result": "alchemistcookbook:fools_gold"
 }

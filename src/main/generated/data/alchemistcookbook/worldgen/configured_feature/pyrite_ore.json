@@ -6,7 +6,7 @@
     "targets": [
       {
         "state": {
-          "Name": "alchemistcookbook:silver_ore"
+          "Name": "alchemistcookbook:pyrite_ore"
         },
         "target": {
 		  "block": "minecraft:stone",
@@ -15,7 +15,7 @@
       },
 	  {
 		"state": {
-		  "Name": "alchemistcookbook:deepslate_silver_ore"
+		  "Name": "alchemistcookbook:deepslate_pyrite_ore"
 		},
 		"target": {
 		  "block": "minecraft:deepslate",
