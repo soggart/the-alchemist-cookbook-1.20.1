@@ -33,6 +33,7 @@ public class ModItemGroups {
                 entries.add(ModItems.LIGHTNINGSTAFF);
                 entries.add(ModItems.BOMBSTAFF);
                 entries.add(ModItems.ENDERSTAFF);
+                entries.add(ModItems.MAGNUMOPUS);
                 entries.add(ModItems.FIREBALLGAUNTLET);
 
 
