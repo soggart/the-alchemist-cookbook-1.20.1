@@ -13,6 +13,7 @@ import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.intprovider.UniformIntProvider;
 import net.soggart.alchemistcookbook.TheAlchemistCookBook;
+import net.soggart.alchemistcookbook.block.custom.WorldEaterBlock;
 
 public class ModBlocks { //quando for fazer um bloco novo lembre-se de preencher blockstates, models, loot tables e lang
 
@@ -39,6 +40,9 @@ public class ModBlocks { //quando for fazer um bloco novo lembre-se de preencher
 
     public static final Block FOOLSGOLD_BLOCK = registerBlock("fools_gold_block",
             new Block(FabricBlockSettings.copyOf(Blocks.IRON_BLOCK).strength(3.0F, 6.0F).sounds(BlockSoundGroup.GILDED_BLACKSTONE)));
+
+    public static final Block WORLDEATERBLOCK = registerBlock("world_eater_block",
+            new WorldEaterBlock(FabricBlockSettings.copyOf(Blocks.GLOWSTONE).sounds(BlockSoundGroup.NETHERITE)));
 
     private static Block registerBlock(String name, Block block){
         registerBlockItem(name, block);
