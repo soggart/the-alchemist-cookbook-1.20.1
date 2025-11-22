@@ -1,7 +1,6 @@
 package net.soggart.alchemistcookbook.item.custom;
 
 
-import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -11,12 +10,8 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.registry.tag.TagKey;
 import net.minecraft.util.ActionResult;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.math.BlockPos;
 import java.util.Random;
-import java.util.function.Predicate;
-import java.util.stream.Stream;
 
 
 public class TransmutatorItem extends Item {
@@ -27,31 +22,53 @@ public class TransmutatorItem extends Item {
 
     @Override
     public ActionResult useOnBlock(ItemUsageContext context) {
-        Random rand = new java.util.Random(context.getWorld().getMoonPhase()*context.getWorld().getTime());
-
-
         BlockPos target = context.getBlockPos();
-        //PlayerEntity user = context.getPlayer();
         BlockState b = context.getWorld().getBlockState(target);
-        //Block bloco = b.getBlock();
-        Block newblock = Registries.BLOCK.get(rand.nextInt());
-
-        transmute(b, newblock, rand, context);
+        transmute(b, context);
         return super.useOnBlock(context);
     }
 
-    public void transmute(BlockState a, Block b, Random rando, ItemUsageContext context){
+    public void transmute(BlockState a, ItemUsageContext context){
         if (a != null) {
-            Stream<TagKey<Block>> tags = a.streamTags();
-            if(tags != null){
-                TagKey<Block> tag = (TagKey<Block>) tags.toArray()[rando.nextInt()%(int)(tags.count())];
-                TagKey<Block> no = BlockTags.WITHER_IMMUNE;
-                if(b.getDefaultState().streamTags().anyMatch((Predicate<? super TagKey<Block>>) tags) && !tag.equals(no) && !b.getDefaultState().isAir()){
-                    //if(a == b.getDefaultState()){context.getWorld().setBlockState(context.getBlockPos(), Blocks.GOLD_BLOCK.getDefaultState());}
-                    context.getWorld().setBlockState(context.getBlockPos(), b.getDefaultState());
-                }
-                else {
-                    transmute(a, Registries.BLOCK.get(rando.nextInt()), rando, context);
+            int n1 = a.streamTags().toArray().length;
+            Random rando = new java.util.Random(context.getWorld().getMoonPhase()*context.getWorld().getTime()*n1* context.toString().length()+context.getWorld().getTickOrder()/573);
+            if(a.streamTags().findAny().isPresent()){
+
+                if(!a.isIn(BlockTags.WITHER_IMMUNE) && !a.isAir()){
+
+                    int n = rando.nextInt(n1);
+                    TagKey<Block> tag = a.streamTags().toList().get(n);
+                    int n2 = Registries.BLOCK.getEntryList(tag).stream().toArray().length;
+                    int counter = 0;
+                    int temp = n2;
+                    int panic = 20;
+                    Block b = Registries.BLOCK.getEntryList(tag).stream().toList().get(rando.nextInt(n2)).get(0).value();
+                    if(n1 == 1 && n2 == 1){
+                        System.out.println(a);
+                        System.out.println(b);
+                        System.out.println(tag);
+                        return;
+                    }
+                    while(n2<=1 && counter<n1 || a.getBlock() == b || panic<=0){
+                        counter++;
+                        tag = a.streamTags().toList().get(n);
+                        n2 = Registries.BLOCK.getEntryList(tag).stream().toArray().length;
+                        if(temp<=n2 || (tag == BlockTags.PICKAXE_MINEABLE || tag == BlockTags.HOE_MINEABLE || tag == BlockTags.SHOVEL_MINEABLE || tag == BlockTags.AXE_MINEABLE)){
+                            n--;
+                            if(n<=0){n=n1-1;}
+                            counter++;
+                            b = Registries.BLOCK.getEntryList(tag).stream().toList().get(rando.nextInt(n2)).get(0).value();
+                        }panic--;
+                    }
+
+                    if(!b.getDefaultState().isIn(BlockTags.WITHER_IMMUNE) && !b.getDefaultState().isAir()){
+                        if(b.getDefaultState().isIn(tag)){
+                            //if(a == b.getDefaultState()){b = Blocks.BEDROCK;}
+                            context.getWorld().setBlockState(context.getBlockPos(), b.getDefaultState());
+                            System.out.println(n);
+                            System.out.println(n2);
+                        }
+                    }//else {transmute(a, Registries.BLOCK.get(rando.nextInt()), rando, context);}
                 }
             }
         }
