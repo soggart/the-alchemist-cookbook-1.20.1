@@ -29,6 +29,7 @@ public class ModItemGroups {
                 entries.add(ModBlocks.PYRITE_BLOCK);
                 entries.add(ModItems.FOOLSGOLD);
                 entries.add(ModBlocks.FOOLSGOLD_BLOCK);
+                entries.add(ModItems.EMPTYSYRINGEITEM);
                 entries.add(ModItems.SLIMERUBBER);
                 entries.add(ModItems.LIGHTNINGSTAFF);
                 entries.add(ModItems.BOMBSTAFF);

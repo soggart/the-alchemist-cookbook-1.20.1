@@ -15,6 +15,7 @@ import net.minecraft.util.math.intprovider.UniformIntProvider;
 import net.soggart.alchemistcookbook.TheAlchemistCookBook;
 import net.soggart.alchemistcookbook.block.custom.WorldEaterBlock;
 
+
 public class ModBlocks { //quando for fazer um bloco novo lembre-se de preencher blockstates, models, loot tables e lang
 
     public static final Block SILVERORE_BLOCK = registerBlock("silver_ore",
