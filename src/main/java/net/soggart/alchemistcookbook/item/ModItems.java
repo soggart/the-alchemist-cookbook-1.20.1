@@ -22,7 +22,7 @@ public class ModItems {
     public static final Item ENDERSTAFF = registerItem("ender_staff", new EnderStaffItem(new FabricItemSettings()));
     public static final Item MAGNUMOPUS = registerItem("philosopherstone", new TransmutatorItem(new FabricItemSettings()));
     public static final Item FIREBALLGAUNTLET = registerItem("fireball_gauntlet", new FireballGauntlet(new FabricItemSettings()));
-    public static final Item FILLEDSYRINGEITEM = registerItem("syring_filled", new Item(new FabricItemSettings()));
+    public static final Item FILLEDSYRINGEITEM = registerItem("syringe_filled", new Item(new FabricItemSettings()));
     public static final Item EMPTYSYRINGEITEM = registerItem("syringe_empty", new EmptySyringeItem(new FabricItemSettings()));
 
     private static void addItemstoIngredientItemGroup(FabricItemGroupEntries entries){

@@ -7,10 +7,11 @@
   ],
   "key": {
     "#": {
-      "group": "logs"
+      "tag": "minecraft:logs"
     }
   },
   "result": {
-    "item": "minecraft:stick"
+    "item": "minecraft:stick",
+    "count": 16
   }
 }

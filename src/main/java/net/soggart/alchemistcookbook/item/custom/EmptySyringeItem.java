@@ -5,11 +5,15 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsage;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.nbt.NbtElement;
+import net.minecraft.nbt.*;
+import net.minecraft.stat.Stats;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
+import net.minecraft.util.TypedActionResult;
 import net.soggart.alchemistcookbook.item.ModItems;
+import net.soggart.alchemistcookbook.utils.ItemNbtHelper;
+
+import java.io.DataOutput;
 
 public class EmptySyringeItem extends Item {
     public EmptySyringeItem(Settings settings) {
@@ -19,18 +23,21 @@ public class EmptySyringeItem extends Item {
     @Override
     public ActionResult useOnEntity(ItemStack stack, PlayerEntity user, LivingEntity entity, Hand hand) {
 
+        ItemStack itemStack = user.getStackInHand(hand);
         ItemStack needle = new ItemStack(ModItems.FILLEDSYRINGEITEM);
 
-        needle.getOrCreateSubNbt("needle.target");// = entity.getActiveStatusEffects();
-        needle.getOrCreateSubNbt("needle.effects");// = entity.getActiveStatusEffects();
-
-        needle.setSubNbt("needle.target", (NbtElement) entity);
-        needle.setSubNbt("needle.effects", (NbtCompound) entity.getActiveStatusEffects());
+        ItemNbtHelper.setString(needle, "neddletarget", entity.getEntityName());
+        //ItemNbtHelper.set(needle, "neddleeffects", (NbtElement) entity.getActiveStatusEffects());
 
         needle.setCustomName(entity.getName());
 
-        entity.damage(entity.getDamageSources().generic(), 0.5f);
-        ItemUsage.exchangeStack(user.getActiveItem(), user, needle);
-        return super.useOnEntity(stack, user, entity, hand);
+        entity.damage(entity.getDamageSources().generic(), 1.0f);
+
+        return TypedActionResult.success(this.fill(itemStack, user, needle)).getResult();
+    }
+
+    protected ItemStack fill(ItemStack stack, PlayerEntity player, ItemStack outputStack) {
+        player.incrementStat(Stats.USED.getOrCreateStat(this));
+        return ItemUsage.exchangeStack(stack, player, outputStack);
     }
 }
