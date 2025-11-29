@@ -1,5 +1,6 @@
 package net.soggart.alchemistcookbook.item.custom;
 
+import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
@@ -7,13 +8,15 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsage;
 import net.minecraft.nbt.*;
 import net.minecraft.stat.Stats;
+import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
+import net.minecraft.world.World;
 import net.soggart.alchemistcookbook.item.ModItems;
 import net.soggart.alchemistcookbook.utils.ItemNbtHelper;
-
-import java.io.DataOutput;
+import org.jetbrains.annotations.Nullable;
+import java.util.List;
 
 public class EmptySyringeItem extends Item {
     public EmptySyringeItem(Settings settings) {
@@ -26,10 +29,8 @@ public class EmptySyringeItem extends Item {
         ItemStack itemStack = user.getStackInHand(hand);
         ItemStack needle = new ItemStack(ModItems.FILLEDSYRINGEITEM);
 
-        ItemNbtHelper.setString(needle, "neddletarget", entity.getEntityName());
-        //ItemNbtHelper.set(needle, "neddleeffects", (NbtElement) entity.getActiveStatusEffects());
-
-        needle.setCustomName(entity.getName());
+        ItemNbtHelper.setString(needle, "needletarget", entity.getClass().getName());
+        ItemNbtHelper.setString(needle, "needlefx", entity.getActiveStatusEffects().toString());
 
         entity.damage(entity.getDamageSources().generic(), 1.0f);
 
