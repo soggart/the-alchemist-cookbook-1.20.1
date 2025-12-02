@@ -16,12 +16,12 @@ public class FilledSyringeItem extends Item{
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
 
-        String needletooltip1 = ItemNbtHelper.getString(stack, "needletarget", "");
-        String needletooltip2 = ItemNbtHelper.getString(stack, "needlefx", "");
+        String needletooltip1 = ItemNbtHelper.getString(stack, "needletarget", ":(");
+        //String needletooltip2 = ItemNbtHelper.getString(stack, "needlefx", "");
 
 
         tooltip.add(Text.translatable(needletooltip1));
-        tooltip.add(Text.translatable(needletooltip2));
+        //tooltip.add(Text.translatable(needletooltip2));
         super.appendTooltip(stack, world, tooltip, context);
     }
 }

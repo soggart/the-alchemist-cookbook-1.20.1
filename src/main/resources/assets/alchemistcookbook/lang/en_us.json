@@ -20,6 +20,9 @@
   "block.alchemistcookbook.deepslate_pyrite_ore": "Deepslate Pyrite Ore",
   "block.alchemistcookbook.raw_fools_gold_block": "Block of Raw Pyrite",
   "block.alchemistcookbook.fools_gold_block": "Block of Pyrite",
+  "block.alchemistcookbook.world_eater_block": "World Eater",
+  "block.alchemistcookbook.separator_block": "Separator",
+
   "itemgroup.potionmod": "The Alchemist CookBook",
 
   "item.minecraft.potion.effect.glow": "Potion of Glowing",
@@ -30,5 +33,7 @@
 
   "effect.alchemistcookbook.corrosion": "Corrosion",
   "effect.alchemistcookbook.plague": "Plague",
-  "effect.alchemistcookbook.decay": "Health Decay"
+  "effect.alchemistcookbook.decay": "Health Decay",
+
+  "separator.displayname": "Separator"
 }

@@ -7,9 +7,11 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 import net.soggart.alchemistcookbook.block.ModBlocks;
+import net.soggart.alchemistcookbook.block.entity.ModBlockEntities;
 import net.soggart.alchemistcookbook.item.ModItemGroups;
 import net.soggart.alchemistcookbook.item.ModItems;
 import net.soggart.alchemistcookbook.potion.ModPotions;
+import net.soggart.alchemistcookbook.screen.ModScreenHandler;
 import net.soggart.alchemistcookbook.statuseffect.effects.Corrosion;
 import net.soggart.alchemistcookbook.statuseffect.effects.Decay;
 import net.soggart.alchemistcookbook.statuseffect.effects.Plague;
@@ -38,6 +40,8 @@ public class TheAlchemistCookBook implements ModInitializer {
         Registry.register(Registries.STATUS_EFFECT, new Identifier("alchemistcookbook", "decay"), DECAY);
         Registry.register(Registries.STATUS_EFFECT, new Identifier("alchemistcookbook", "plague"), PLAGUE);
 
+        ModBlockEntities.registerBlockEntities();
+        ModScreenHandler.registerScreenHandlers();
         ModItemGroups.registerItemGroups();
         ModItems.registerModItems();
         ModBlocks.registerModBlocks();

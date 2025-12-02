@@ -36,7 +36,8 @@ public class ModItemGroups {
                 entries.add(ModItems.ENDERSTAFF);
                 entries.add(ModItems.MAGNUMOPUS);
                 entries.add(ModItems.FIREBALLGAUNTLET);
-                entries.add(ModBlocks.WORLDEATERBLOCK);
+                entries.add(ModBlocks.WORLDEATER_BLOCK);
+                entries.add(ModBlocks.SEPARATOR_BLOCK);
 
 
                     }).build());
