@@ -110,7 +110,7 @@ public class SeparatorBlockEntity extends BlockEntity implements ExtendedScreenH
         if(world.isClient()){return;}
 
         if(isOutputSlotEmptyOrReceivable()){
-            if(this.hasRecipe() && (capacity1+3 < maxcapacity && capacity2+1 < maxcapacity)){
+            if(this.hasRecipe() && (capacity1+3 <= maxcapacity && capacity2+1 <= maxcapacity)){
                 this.increaseCraftProgress();
                 markDirty(world, pos, state);
 
@@ -139,7 +139,7 @@ public class SeparatorBlockEntity extends BlockEntity implements ExtendedScreenH
         increaseCapacity1(3);
         increaseCapacity2(1);
         System.out.println(capacity1 + " e " +capacity2);
-        if(capacity1+3 < maxcapacity && capacity2+1 < maxcapacity){
+        if(capacity1+3 <= maxcapacity && capacity2+1 <= maxcapacity){
             this.removeStack(INPUT_SLOT, 1);
             ItemStack result = new ItemStack(ModItems.EMPTYSYRINGEITEM);
             this.setStack(OUTPUT_SLOT, new ItemStack(result.getItem(), getStack(OUTPUT_SLOT).getCount() + result.getCount()));
