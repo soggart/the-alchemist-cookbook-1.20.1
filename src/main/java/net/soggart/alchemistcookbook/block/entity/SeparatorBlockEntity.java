@@ -33,12 +33,11 @@ public class SeparatorBlockEntity extends BlockEntity implements ExtendedScreenH
 
     protected final PropertyDelegate propertyDelegate;
     private int progress = 0;
-    private int maxprogress = 64;
+    private int maxprogress = 128;
 
-    private int capacity1 = 0;
-    private int capacity2 = 0;
-    private final int maxcapacity1 = 72;
-    private final int maxcapacity2 = 72;
+    public int capacity1 = 0;
+    public int capacity2 = 0;
+    public int maxcapacity = 72;
 
     public SeparatorBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.SEPARATOR_BLOCK_ENTITY, pos, state);
@@ -48,6 +47,9 @@ public class SeparatorBlockEntity extends BlockEntity implements ExtendedScreenH
                 return switch (index){
                     case 0 -> SeparatorBlockEntity.this.progress;
                     case 1 -> SeparatorBlockEntity.this.maxprogress;
+                    case 2 -> SeparatorBlockEntity.this.capacity1;
+                    case 3 -> SeparatorBlockEntity.this.capacity2;
+                    case 4 -> SeparatorBlockEntity.this.maxcapacity;
                     default -> 0;
                 };
             }
@@ -57,12 +59,15 @@ public class SeparatorBlockEntity extends BlockEntity implements ExtendedScreenH
                 switch (index){
                     case 0 -> SeparatorBlockEntity.this.progress = value;
                     case 1 -> SeparatorBlockEntity.this.maxprogress = value;
+                    case 2 -> SeparatorBlockEntity.this.capacity1 = value;
+                    case 3 -> SeparatorBlockEntity.this.capacity2 = value;
+                    case 4 -> SeparatorBlockEntity.this.maxcapacity = value;
                 }
             }
 
             @Override
             public int size() {
-                return 2;
+                return 5;
             }
         };
     }
@@ -105,7 +110,7 @@ public class SeparatorBlockEntity extends BlockEntity implements ExtendedScreenH
         if(world.isClient()){return;}
 
         if(isOutputSlotEmptyOrReceivable()){
-            if(this.hasRecipe()){
+            if(this.hasRecipe() && (capacity1+3 < maxcapacity && capacity2+1 < maxcapacity)){
                 this.increaseCraftProgress();
                 markDirty(world, pos, state);
 
@@ -131,27 +136,29 @@ public class SeparatorBlockEntity extends BlockEntity implements ExtendedScreenH
     }
 
     private void craftItem() {
-        if(this.increaseCapacity(1, 3) && this.increaseCapacity(2, 1)){
+        increaseCapacity1(3);
+        increaseCapacity2(1);
+        System.out.println(capacity1 + " e " +capacity2);
+        if(capacity1+3 < maxcapacity && capacity2+1 < maxcapacity){
             this.removeStack(INPUT_SLOT, 1);
             ItemStack result = new ItemStack(ModItems.EMPTYSYRINGEITEM);
-
             this.setStack(OUTPUT_SLOT, new ItemStack(result.getItem(), getStack(OUTPUT_SLOT).getCount() + result.getCount()));
         }
     }
 
-    private boolean increaseCapacity(int tank, int amount) {
-        switch (tank){
-            case 1 -> {
-                return this.maxcapacity1 < capacity1 + amount;
-            }
-            case 2 -> {
-                return this.maxcapacity2 < capacity2 + amount;
-            }
-            default -> {
-                return false;
-            }
+    private void increaseCapacity1(int amount) {
+        if (capacity1+amount > maxcapacity){
+            return;
+        }else{
+            capacity1 += amount;
         }
-
+    }
+    private void increaseCapacity2(int amount) {
+        if (capacity2+amount > maxcapacity){
+            return;
+        }else{
+            capacity2 += amount;
+        }
     }
 
     private void resetProgress() {

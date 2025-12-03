@@ -36,25 +36,21 @@ public class SeparatorScreen extends HandledScreen<SeparatorScreenHandler> {
         context.drawTexture(TEXTURE, x, y, 0, 0, backgroundWidth, backgroundHeight+9);
 
         renderProgressArrows(context, x, y);
+        renderTanks(context, x, y);
     }
 
     private void renderProgressArrows(DrawContext context, int x, int y) {
         if(handler.isCrafting()){
-            context.drawTexture(TEXTURE, x+78, y+24, 176, 0, handler.getScaledProgress(), 8);
-            context.drawTexture(TEXTURE, x+98, y+24, 176, 8, -handler.getScaledProgress(), 8);
+            context.drawTexture(TEXTURE, x+45, y+19, 176, 0, 33, 8);
+            context.drawTexture(TEXTURE, x+45, y+19, 45, 19, 32-handler.getScaledProgress(), 8);
+            context.drawTexture(TEXTURE, x+99, y+19, 176, 8, handler.getScaledProgress(), 8);
         }
     }
-
-    private void renderTank1(DrawContext context, int x, int y) {
-        if(handler.isCrafting()){
-            context.drawTexture(TEXTURE, x+27, y+16, 176, 16, 16, handler.getScaledCapacity1());
-        }
-    }
-
-    private void renderTank2(DrawContext context, int x, int y) {
-        if(handler.isCrafting()){
-            context.drawTexture(TEXTURE, x+135, y+16, 176, 88, 16, handler.getScaledCapacity2());
-        }
+    private void renderTanks(DrawContext context, int x, int y) {
+        context.drawTexture(TEXTURE, x+26, y+15, 176, 16, 16, 72);
+        context.drawTexture(TEXTURE, x+26, y+15, 26, 15, 16, 72-handler.getTankCapacity1());
+        context.drawTexture(TEXTURE, x+134, y+15, 176, 88, 16, 72);
+        context.drawTexture(TEXTURE, x+134, y+15, 134, 15, 16, 72-handler.getTankCapacity2());
     }
 
     @Override

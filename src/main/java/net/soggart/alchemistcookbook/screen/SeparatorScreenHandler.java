@@ -20,7 +20,7 @@ public class SeparatorScreenHandler extends ScreenHandler {
 
     public SeparatorScreenHandler(int syncId, PlayerInventory inventory, PacketByteBuf buf){
         this(syncId, inventory, inventory.player.getWorld().getBlockEntity(buf.readBlockPos()),
-                new ArrayPropertyDelegate(3));
+                new ArrayPropertyDelegate(5));
     }
 
     public SeparatorScreenHandler(int syncId, PlayerInventory pinventory, BlockEntity blockEntity, PropertyDelegate arrayPropertyDelegate) {
@@ -48,20 +48,20 @@ public class SeparatorScreenHandler extends ScreenHandler {
     public int getScaledProgress() {
         int progress = this.propertyDelegate.get(0);
         int maxProgress = this.propertyDelegate.get(1);  // Max Progress
-        int progressArrowSize = 26; // This is the width in pixels of your arrow
+        int progressArrowSize = 33; // This is the width in pixels of your arrow
         return maxProgress != 0 && progress != 0 ? progress * progressArrowSize / maxProgress : 0;
     }
 
-    public int getScaledCapacity1() {
-        int capacity1 = this.propertyDelegate.get(2);
-        int maxCapacity1 = this.propertyDelegate.get(3);  // Max Progress
-        return maxCapacity1 != 0 && capacity1 != 0 ? capacity1 * maxCapacity1 : 0;
+    public int getTankCapacity1() {
+        int capacity = this.propertyDelegate.get(2);
+        int maxCapacity = this.propertyDelegate.get(4);  // Max Progress
+        return maxCapacity != 0 && capacity != 0 ? capacity : 0;
     }
 
-    public int getScaledCapacity2() {
-        int capacity2 = this.propertyDelegate.get(4);
-        int maxCapacity2 = this.propertyDelegate.get(5);  // Max Progress
-        return maxCapacity2 != 0 && capacity2 != 0 ? capacity2 * maxCapacity2 : 0;
+    public int getTankCapacity2() {
+        int capacity = this.propertyDelegate.get(3);
+        int maxCapacity = this.propertyDelegate.get(4);  // Max Progress
+        return maxCapacity != 0 && capacity != 0 ? capacity : 0;
     }
 
     @Override
