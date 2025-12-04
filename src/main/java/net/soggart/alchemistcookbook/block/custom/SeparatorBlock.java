@@ -70,4 +70,5 @@ public class SeparatorBlock extends BlockWithEntity implements BlockEntityProvid
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
         return world.isClient ? null : checkType(type, ModBlockEntities.SEPARATOR_BLOCK_ENTITY, (world1, pos, state1, blockEntity) -> blockEntity.tick(world1, pos, state1));
     }
+
 }

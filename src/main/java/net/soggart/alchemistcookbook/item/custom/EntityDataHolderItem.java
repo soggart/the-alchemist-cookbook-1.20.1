@@ -8,16 +8,17 @@ import net.minecraft.world.World;
 import net.soggart.alchemistcookbook.utils.ItemNbtHelper;
 import org.jetbrains.annotations.Nullable;
 import java.util.List;
+import java.util.Objects;
 
-public class FilledSyringeItem extends Item{
-    public FilledSyringeItem(Item.Settings settings) {
+public class EntityDataHolderItem extends Item{
+    public EntityDataHolderItem(Item.Settings settings) {
         super(settings);
     }
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
 
         String needletooltip1 = ItemNbtHelper.getString(stack, "needletarget", ":(");
-        //String needletooltip2 = ItemNbtHelper.getString(stack, "needlefx", "");
+        //String needletooltip2 = Objects.requireNonNull(ItemNbtHelper.get(stack, "CustomPotionEffects")).toString();
 
 
         tooltip.add(Text.translatable(needletooltip1));

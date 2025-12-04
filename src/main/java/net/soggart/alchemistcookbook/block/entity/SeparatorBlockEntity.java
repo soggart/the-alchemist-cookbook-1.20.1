@@ -4,13 +4,18 @@ import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;
+import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventories;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
+import net.minecraft.item.PotionItem;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.PacketByteBuf;
+import net.minecraft.potion.Potion;
+import net.minecraft.potion.PotionUtil;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -21,7 +26,9 @@ import net.minecraft.world.World;
 import net.soggart.alchemistcookbook.block.custom.SeparatorBlock;
 import net.soggart.alchemistcookbook.item.ModItems;
 import net.soggart.alchemistcookbook.screen.SeparatorScreenHandler;
+import net.soggart.alchemistcookbook.utils.ItemNbtHelper;
 import org.jetbrains.annotations.Nullable;
+import java.util.List;
 
 public class SeparatorBlockEntity extends BlockEntity implements ExtendedScreenHandlerFactory, ImplementedInventory {
 
@@ -33,11 +40,15 @@ public class SeparatorBlockEntity extends BlockEntity implements ExtendedScreenH
 
     protected final PropertyDelegate propertyDelegate;
     private int progress = 0;
-    private int maxprogress = 128;
+    private int maxprogress = 10;
 
     public int capacity1 = 0;
     public int capacity2 = 0;
     public int maxcapacity = 72;
+
+    private String bloodsource = "";
+    private List<StatusEffectInstance> effects;
+    private ItemStack pot = new ItemStack(Items.POTION);
 
     public SeparatorBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.SEPARATOR_BLOCK_ENTITY, pos, state);
@@ -87,6 +98,11 @@ public class SeparatorBlockEntity extends BlockEntity implements ExtendedScreenH
         super.writeNbt(nbt);
         Inventories.writeNbt(nbt, inventory);
         nbt.putInt("separator.progress", progress);
+        nbt.putInt("separator.tank1", capacity1);
+        nbt.putInt("separator.tank2", capacity2);
+        if(effects!=null){
+            PotionUtil.setCustomPotionEffects(pot, effects);
+        }
     }
 
     @Override
@@ -94,6 +110,9 @@ public class SeparatorBlockEntity extends BlockEntity implements ExtendedScreenH
         super.readNbt(nbt);
         Inventories.readNbt(nbt, inventory);
         progress = nbt.getInt("separator.progress");
+        capacity1 = nbt.getInt("separator.tank1");
+        capacity2 = nbt.getInt("separator.tank2");
+        effects = PotionUtil.getPotionEffects(pot);
     }
 
     @Override
@@ -109,8 +128,8 @@ public class SeparatorBlockEntity extends BlockEntity implements ExtendedScreenH
     public void tick(World world, BlockPos pos, BlockState state) {
         if(world.isClient()){return;}
 
-        if(isOutputSlotEmptyOrReceivable()){
-            if(this.hasRecipe() && (capacity1+3 <= maxcapacity && capacity2+1 <= maxcapacity)){
+        if(isSlotEmptyOrReceivable(OUTPUT_SLOT)){
+            if(this.hasRecipea() && (capacity1+3 <= maxcapacity && capacity2+1 <= maxcapacity)){
                 this.increaseCraftProgress();
                 markDirty(world, pos, state);
 
@@ -125,6 +144,20 @@ public class SeparatorBlockEntity extends BlockEntity implements ExtendedScreenH
             this.resetProgress();
             markDirty(world, pos, state);
         }
+
+        if(isSlotEmptyOrReceivable(OUTPUT_SLOT)){
+            if(this.hasRecipeb() && (capacity1-24 >= 0)){
+                markDirty(world, pos, state);
+                this.craftItem1();
+            }
+        }
+
+        if(isSlotEmptyOrReceivable(OUTPUT_SLOT2)){
+            if(this.hasRecipec() && (capacity2-24 >= 0)){
+                markDirty(world, pos, state);
+                this.craftItem2();
+            }
+        }
     }
 
     private void increaseCraftProgress() {
@@ -136,52 +169,85 @@ public class SeparatorBlockEntity extends BlockEntity implements ExtendedScreenH
     }
 
     private void craftItem() {
-        increaseCapacity1(3);
-        increaseCapacity2(1);
-        System.out.println(capacity1 + " e " +capacity2);
+        //System.out.println(capacity1 + " e " +capacity2);
+        effects = PotionUtil.getCustomPotionEffects(this.getStack(0).getNbt());//ItemNbtHelper.get(this.getStack(0), "CustomPotionEffects");
         if(capacity1+3 <= maxcapacity && capacity2+1 <= maxcapacity){
+            increaseCapacity1(3);
+            if(!effects.isEmpty()){increaseCapacity2(1);}
+
+            bloodsource = ItemNbtHelper.getString(this.getStack(0), "needletarget", "");
+            //effects = PotionUtil.getCustomPotionEffects(this.getStack(0).getNbt());//ItemNbtHelper.get(this.getStack(0), "CustomPotionEffects");
             this.removeStack(INPUT_SLOT, 1);
-            ItemStack result = new ItemStack(ModItems.EMPTYSYRINGEITEM);
-            this.setStack(OUTPUT_SLOT, new ItemStack(result.getItem(), getStack(OUTPUT_SLOT).getCount() + result.getCount()));
+            //ItemStack result = new ItemStack(ModItems.EMPTYSYRINGEITEM);
+
+            //this.setStack(OUTPUT_SLOT, new ItemStack(result.getItem(), getStack(OUTPUT_SLOT).getCount() + result.getCount()));
         }
     }
 
+    private void craftItem1() {
+        if(capacity1-(24*getStack(OUTPUT_SLOT).getCount()) >=0){
+            increaseCapacity1(-24*getStack(OUTPUT_SLOT).getCount());
+            ItemStack result = new ItemStack(ModItems.BLOODBOTTLE);
+            System.out.println(bloodsource);
+            ItemNbtHelper.setString(result, "needletarget", bloodsource);
+            //this.removeStack(OUTPUT_SLOT);
+            this.setStack(OUTPUT_SLOT, new ItemStack(result.getItem(), getStack(OUTPUT_SLOT).getCount()));
+        }
+    }
+
+    private void craftItem2() {
+        if(capacity2-(24*getStack(OUTPUT_SLOT2).getCount()) >=0){
+            increaseCapacity2(-24*getStack(OUTPUT_SLOT2).getCount());
+            //this.removeStack(OUTPUT_SLOT2);
+            System.out.println(effects);
+            if(!effects.isEmpty()){
+                //ItemStack result = PotionUtil.setCustomPotionEffects(pot, effects);
+                ItemStack result = PotionUtil.setPotion(pot, new Potion());
+                this.setStack(OUTPUT_SLOT2, new ItemStack(result.getItem(), getStack(OUTPUT_SLOT2).getCount()));
+            }else{System.out.println("porra");}
+        }
+    }
+
+
     private void increaseCapacity1(int amount) {
-        if (capacity1+amount > maxcapacity){
-            return;
-        }else{
-            capacity1 += amount;
-        }
-    }
+        if (!(capacity1+amount > maxcapacity || capacity1+amount < 0)){capacity1 += amount;}}
+
     private void increaseCapacity2(int amount) {
-        if (capacity2+amount > maxcapacity){
-            return;
-        }else{
-            capacity2 += amount;
-        }
-    }
+        if (!(capacity2+amount > maxcapacity || capacity2+amount < 0)){capacity2 += amount;}}
 
     private void resetProgress() {
         this.progress = 0;
     }
 
-    private boolean hasRecipe() {
-        ItemStack result = new ItemStack(ModItems.EMPTYSYRINGEITEM);
-        boolean hasInput = getStack(INPUT_SLOT).getItem() == ModItems.FILLEDSYRINGEITEM;
+    private boolean hasRecipea() {
+        //ItemStack result = new ItemStack(ModItems.EMPTYSYRINGEITEM);
+        return getStack(INPUT_SLOT).getItem() == ModItems.FILLEDSYRINGEITEM;//&& canInsertAmountIntoSlot(result, INPUT_SLOT) && canInsertItemIntoSlot(result.getItem(), INPUT_SLOT);
+    }
 
-        return hasInput && canInsertAmountIntoOutputSlot(result) && canInsertItemIntoOutputSlot(result.getItem());
+    private boolean hasRecipeb() {
+        //ItemStack result = new ItemStack(Items.POTION);
+        boolean hasInput1 = getStack(OUTPUT_SLOT).getItem() == Items.GLASS_BOTTLE;
+
+        return hasInput1 && getStack(OUTPUT_SLOT).getCount()<=capacity1/24;
+    }
+    private boolean hasRecipec() {
+        //ItemStack result = new ItemStack(Items.POTION);
+        boolean hasInput2 = getStack(OUTPUT_SLOT2).getItem() == Items.GLASS_BOTTLE;
+
+        return hasInput2 && getStack(OUTPUT_SLOT2).getCount()<=capacity2/24;
     }
 
 
-    private boolean isOutputSlotEmptyOrReceivable() {
-        return this.getStack(OUTPUT_SLOT).isEmpty() || this.getStack(OUTPUT_SLOT).getCount() < this.getStack(OUTPUT_SLOT).getMaxCount();
+
+    private boolean isSlotEmptyOrReceivable(int slot) {
+        return this.getStack(slot).isEmpty() || this.getStack(slot).getCount() < this.getStack(slot).getMaxCount();
     }
 
-    private boolean canInsertItemIntoOutputSlot(Item item) {
-        return this.getStack(OUTPUT_SLOT).getItem() == item || this.getStack(OUTPUT_SLOT).isEmpty();
+    private boolean canInsertItemIntoSlot(Item item, int slot) {
+        return this.getStack(slot).getItem() == item || this.getStack(slot).isEmpty();
     }
 
-    private boolean canInsertAmountIntoOutputSlot(ItemStack result) {
-        return this.getStack(OUTPUT_SLOT).getCount() + result.getCount() <= getStack(OUTPUT_SLOT).getMaxCount();
+    private boolean canInsertAmountIntoSlot(ItemStack result, int slot) {
+        return this.getStack(slot).getCount() + result.getCount() <= getStack(slot).getMaxCount();
     }
 }
